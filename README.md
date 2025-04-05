@@ -15,9 +15,15 @@ terraform {
     }
   }
 }
+
 provider "lambdaconfig" {
   # region = "ap-northeast-1"
 }
+
+# import {
+#   to = lambdaconfig_concurrency.my_func
+#   id = "my_func"
+# }
 
 resource "lambdaconfig_concurrency" "my_func" {
   function_name                  = "my_func"
