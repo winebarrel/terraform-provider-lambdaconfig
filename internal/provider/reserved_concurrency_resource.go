@@ -149,6 +149,22 @@ func (r *ConcurrencyResource) Update(ctx context.Context, req resource.UpdateReq
 }
 
 func (r *ConcurrencyResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	var state ConcurrencyResourceModel
+	resp.Diagnostics.Append(req.State.Get(ctx, &state)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	_, err := r.client.DeleteFunctionConcurrency(ctx, &lambda.DeleteFunctionConcurrencyInput{
+		FunctionName: state.FunctionName.ValueStringPointer(),
+	})
+
+	if err != nil {
+		resp.Diagnostics.AddError("Error Deleting Lambda function concurrency", err.Error())
+		return
+	}
+
 	resp.State.RemoveResource(ctx)
 }
 
