@@ -11,13 +11,19 @@ terraform {
   required_providers {
     lambdaconfig = {
       source  = "winebarrel/lambdaconfig"
-      version = ">= 0.1.0"
+      version = ">= 0.2.0"
     }
   }
 }
+
 provider "lambdaconfig" {
   # region = "ap-northeast-1"
 }
+
+# import {
+#   to = lambdaconfig_concurrency.my_func
+#   id = "my_func"
+# }
 
 resource "lambdaconfig_concurrency" "my_func" {
   function_name                  = "my_func"

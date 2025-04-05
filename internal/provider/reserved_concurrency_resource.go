@@ -6,6 +6,7 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/lambda"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
@@ -13,7 +14,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-var _ resource.Resource = &ConcurrencyResource{}
+var (
+	_ resource.ResourceWithConfigure   = &ConcurrencyResource{}
+	_ resource.ResourceWithImportState = &ConcurrencyResource{}
+)
 
 func NewConcurrencyResource() resource.Resource {
 	return &ConcurrencyResource{}
@@ -146,4 +150,8 @@ func (r *ConcurrencyResource) Update(ctx context.Context, req resource.UpdateReq
 
 func (r *ConcurrencyResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
 	resp.State.RemoveResource(ctx)
+}
+
+func (r *ConcurrencyResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+	resource.ImportStatePassthroughID(ctx, path.Root("function_name"), req, resp)
 }
