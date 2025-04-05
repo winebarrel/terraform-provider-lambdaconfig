@@ -1,6 +1,7 @@
 # terraform-provider-lambdaconfig
 
 [![CI](https://github.com/winebarrel/terraform-provider-lambdaconfig/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/terraform-provider-lambdaconfig/actions/workflows/ci.yml)
+[![terraform docs](https://img.shields.io/badge/terraform-docs-%35835CC?logo=terraform)](https://registry.terraform.io/providers/winebarrel/lambdaconfig/latest/docs)
 
 Terraform provider for AWS Lambda function configuration.
 
