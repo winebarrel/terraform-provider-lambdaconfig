@@ -5,7 +5,7 @@ go 1.25.8
 require (
 	github.com/aws/aws-sdk-go-v2 v1.41.9
 	github.com/aws/aws-sdk-go-v2/config v1.32.20
-	github.com/aws/aws-sdk-go-v2/service/lambda v1.90.3
+	github.com/aws/aws-sdk-go-v2/service/lambda v1.91.0
 	github.com/hashicorp/terraform-plugin-framework v1.19.0
 )
 
